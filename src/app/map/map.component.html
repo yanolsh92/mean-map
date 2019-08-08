@@ -1,0 +1,28 @@
+<mat-card>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div [hidden]="isLoading">
+  <div id="panel">
+    <button (click)="clearMarkers()" mat-button>Hide Markers</button>
+    <button (click)="showMarkers()" mat-button>Show Markers</button>
+    <button (click)="deleteMarkers()" mat-button>Delete Markers</button>
+    <button mat-stroked-button (click)="saveMarkers()">Save Markers</button>
+  </div>
+  <div #map id="map"></div>
+  <div id="zoom-panel" #zoom>
+    <button mat-button (click)="zoomInOut(1)">+</button>
+    <button mat-button (click)="zoomInOut(-1)">-</button>
+  </div>
+  <section>
+    <ng-container *ngFor="let c of categories">
+      <mat-checkbox
+      (change)="onToggle(c.value)"
+      type="checkbox"
+      name="categories"
+      value="{{ c.value }}"
+      [(ngModel)]="c.checked">
+      {{ c.name }}
+    </mat-checkbox>
+    </ng-container>
+  </section>
+</div>
+</mat-card>
